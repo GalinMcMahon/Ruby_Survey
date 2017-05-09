@@ -6,12 +6,6 @@
   <label for="prompt">Question: <%= question.prompt %></label>
 
 
-  <form action="/delete_question/<%= question.id %>" method="post">
-    <input name="_method" type="hidden" value="delete">
-    <button type="submit" class="btn btn-danger">delete Q</button>
-  </form>
-
-
   <br>
   <select class="form-control" name="<%= @question_ids %>" >
       <option> <%= question.answer1 %> </option>
@@ -19,7 +13,7 @@
       <option> <%= question.answer3 %> </option>
       <option> <%= question.answer4 %> </option>
   </select>
-  <hr>
+
 <% end %>
 <br>
 <button class="btn btn-info" type="submit" name="button">Submit Survey!</button>
@@ -37,7 +31,20 @@
 </form>
 
 <hr>
-<br>
+
+
+<form action="/delete_question/<%= @survey.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+    <label for="delete_question">Delete a Question</label>
+    <select class="form-control" name="question-id">
+      <% @survey.questions.each do |question| %>
+        <option><span id="hide"><%= question.id %></span> <%= question.prompt %></option>
+      <% end %>
+    </select>
+  <button type="submit" class="btn btn-danger">delete Q</button>
+</form>
+
+<hr>
 <form action="/delete_survey/<%= @survey.id %>" method="post">
   <input name="_method" type="hidden" value="delete">
   <button type="submit" class="btn btn-danger">Delete Survey</button>

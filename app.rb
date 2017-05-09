@@ -48,7 +48,14 @@ patch('/update_survey/:id') do
   redirect "/survey/#{@survey.id}"
 end
 
-
+delete "/delete_question/:id" do
+  @survey = Survey.find(params.fetch("id").to_i())
+  question = params.fetch 'question-id'
+  # binding.pry
+  @question = Question.find(question)
+  @question.delete
+  redirect "/survey/#{@survey.id}"
+end
 
 delete('/delete_survey/:id') do
   @survey = Survey.find(params.fetch("id").to_i())
