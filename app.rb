@@ -36,13 +36,32 @@ post '/survey/create' do
 end
 
 get '/survey/:id' do
-  # binding.pry
   @survey = Survey.find(params.fetch('id').to_i)
+  @question_ids = @survey.questions.ids
   erb :survey
 end
+
+patch('/update_survey/:id') do
+  title = params.fetch("survey-title")
+  @survey = Survey.find(params.fetch("id").to_i())
+  @survey.update({title: title})
+  redirect "/survey/#{@survey.id}"
+end
+
+
 
 delete('/delete_survey/:id') do
   @survey = Survey.find(params.fetch("id").to_i())
   @survey.delete
   redirect '/'
+end
+
+post '/survey/submit' do
+  binding.pry
+  answer1 = params.fetch "#{@question_ids}"
+  answer2 = params.fetch "#{@question_ids}"
+  answer1 = params.fetch "#{@question_ids}"
+  answer1 = params.fetch "#{@question_ids}"
+  # user.create()
+  erb :success
 end

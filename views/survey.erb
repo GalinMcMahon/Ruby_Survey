@@ -1,27 +1,46 @@
-<h1>Survey itself once built</h1>
 <h3><%= @survey.title %></h3>
 
 <form action="/survey/submit" method="post">
 
 <% @survey.questions.each do |question| %>
   <label for="prompt">Question: <%= question.prompt %></label>
+
+
+  <form action="/delete_question/<%= question.id %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button type="submit" class="btn btn-danger">delete Q</button>
+  </form>
+
+
   <br>
-  <select class="form-control" name="question1" >
-      <option value="1"> <%= question.answer1 %> </option>
-      <option value="2"> <%= question.answer2 %> </option>
-      <option value="3"> <%= question.answer3 %> </option>
-      <option value="4"> <%= question.answer4 %> </option>
+  <select class="form-control" name="<%= @question_ids %>" >
+      <option> <%= question.answer1 %> </option>
+      <option> <%= question.answer2 %> </option>
+      <option> <%= question.answer3 %> </option>
+      <option> <%= question.answer4 %> </option>
   </select>
+  <hr>
 <% end %>
 <br>
 <button class="btn btn-info" type="submit" name="button">Submit Survey!</button>
 </form>
 
-<br>
+<br><br>
 
+
+
+<form action="/update_survey/<%= @survey.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <input id="name" name="survey-title" type="text" placeholder="Enter a new title">
+  <br><br>
+  <button type="submit" class="btn btn-warning">Update title</button>
+</form>
+
+<hr>
+<br>
 <form action="/delete_survey/<%= @survey.id %>" method="post">
   <input name="_method" type="hidden" value="delete">
-  <button type="submit" class="btn btn-danger">Delete <%=@survey.title %></button>
+  <button type="submit" class="btn btn-danger">Delete Survey</button>
 </form>
 <br>
 <a class="btn btn-success" href="/survey/build/<%= @survey.id %>">Add another question</a>
