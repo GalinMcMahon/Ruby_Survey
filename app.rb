@@ -18,7 +18,7 @@ post '/survey/new' do
   erb :survey_builder
 end
 
-get '/survey/new' do
+get '/survey/build/:id' do
   @survey = Survey.find(params.fetch('id').to_i)
   erb :survey_builder
 end
@@ -29,10 +29,10 @@ post '/survey/create' do
   option2 = params.fetch 'option2'
   option3 = params.fetch 'option3'
   option4 = params.fetch 'option4'
-binding.pry
   survey_id = params.fetch 'survey_id'
   Question.create({prompt: prompt, answer1: option1, answer2: option2, answer3: option3, answer4: option4, survey_id: survey_id})
-  redirect '/'
+  @survey = Survey.find(survey_id)
+  erb :survey_builder
 end
 
 get '/survey/:id' do

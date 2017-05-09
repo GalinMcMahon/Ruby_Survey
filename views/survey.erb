@@ -23,6 +23,8 @@
   <input name="_method" type="hidden" value="delete">
   <button type="submit" class="btn btn-danger">Delete <%=@survey.title %></button>
 </form>
+<br>
+<a class="btn btn-success" href="/survey/build/<%= @survey.id %>">Add another question</a>
 <hr>
 
 <a href="/">Home</a>
