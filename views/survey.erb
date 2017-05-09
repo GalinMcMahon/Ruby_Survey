@@ -38,7 +38,7 @@
     <label for="delete_question">Delete a Question</label>
     <select class="form-control" name="question-id">
       <% @survey.questions.each do |question| %>
-        <option><span id="hide"><%= question.id %></span> <%= question.prompt %></option>
+        <option value="<%= question.id %>"> <%= question.prompt %></option>
       <% end %>
     </select>
   <button type="submit" class="btn btn-danger">delete Q</button>
