@@ -1,0 +1,31 @@
+<h3>Survey: <em><%= @survey.title %></em></h3>
+
+<p>
+  Build your survey!
+</p>
+
+
+<form action="/survey/create" method="post">
+  <input type="hidden" name="survey_id" value="<%= @survey.id %>">
+  <label>What's your question prompt?</label>
+  <input type="text" name="prompt">
+  <br>
+  <label>What's your first answer option?</label>
+  <input type="text" name="option1">
+  <br>
+  <label>What's your second answer option?</label>
+  <input type="text" name="option2">
+  <br>
+  <label>What's your third answer option?</label>
+  <input type="text" name="option3">
+  <br>
+  <label>What's your fourth answer option?</label>
+  <input type="text" name="option4">
+  <br>
+  <br><br>
+  <button class="btn btn-info" type="submit">create survey</button>
+</form>
+
+<br>
+
+<a class="btn btn-success" href="/">Home</a>

@@ -1,0 +1,28 @@
+<h1>Survey itself once built</h1>
+<h3><%= @survey.title %></h3>
+
+<form action="/survey/submit" method="post">
+
+<% @survey.questions.each do |question| %>
+  <label for="prompt">Question: <%= question.prompt %></label>
+  <br>
+  <select class="form-control" name="question1" >
+      <option value="1"> <%= question.answer1 %> </option>
+      <option value="2"> <%= question.answer2 %> </option>
+      <option value="3"> <%= question.answer3 %> </option>
+      <option value="4"> <%= question.answer4 %> </option>
+  </select>
+<% end %>
+<br>
+<button class="btn btn-info" type="submit" name="button">Submit Survey!</button>
+</form>
+
+<br>
+
+<form action="/delete_survey/<%= @survey.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit" class="btn btn-danger">Delete <%=@survey.title %></button>
+</form>
+<hr>
+
+<a href="/">Home</a>
